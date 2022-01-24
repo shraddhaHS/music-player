@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>music player</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="main_div">
+    <div class="music_container">
+        <h2 id="title">if i could fly</h2>
+        <H3 id="artist">One Direction</H3>
+        <div class="img_container">
+            <img src="images/Dir-2.jpg" alt="">
+        </div>
+        <audio src="music/Dir-2.mp3"></audio>
+        <!-- controls -->
+        <div class="music_controls">
+            <i class="fas fa-backward" id="prev" title="Previous"></i>
+            <i class="fas fa-play main-button " id="play" title="Play"></i>
+            <i class="fas fa-forward" id="next" title="Next"></i>
+        </div>
+    </div>
+</div>  
+<script>
+    const music = document.querySelector('audio');
+    const img = document.querySelector('img');
+    const play = document.getElementById('play');
+    const artist = document.getElementById('artist');
+    const title = document.getElementById('title');
+    const prev = document.getElementById('prev');
+    const next = document.getElementById('next');
+
+const songs = [
+    {
+    name:'Dir-2',
+    title:"if i could fly",
+    artist: "one direction"
+},
+    {
+    name:'Dir-1',
+    title:"infinity",
+    artist: "one direction"
+    },
+    {
+    name:'Dir-3',
+    title:"18",
+    artist: "one direction"
+    },
+   { name:'Dir-4',
+    title:"End of the day",
+    artist: "one direction"
+    },
+   { name:'Dir-5',
+    title:"perfect",
+    artist: "one direction"
+    },
+    {
+    name:'tay',
+    title:"gorgeous",
+    artist: "taylor swift"}
+   , 
+   {
+    name:'tay-2',
+    title:"all too well",
+    artist: "taylor swift"
+},
+   {
+    name:'tay-3',
+    title:"Lover",
+    artist: "taylor swift"
+},
+   {
+    name:'tay-4',
+    title:"champagne problems",
+    artist: "taylor swift"
+}
+,
+   {
+    name:'tay-5',
+    title:"cornelia street",
+    artist: "taylor swift"
+}
+
+
+]
+
+  let  isPlaying = false;
+const  playMusic = () => {
+    isPlaying = true;
+    music.play();
+    play.classList.replace('fa-play', "fa-pause");
+    img.classList.add('anime');
+};
+// for pause
+const pauseMusic = () => {
+    isPlaying = false;
+    music.pause();
+    play.classList.replace('fa-pause', "fa-play");
+    img.classList.remove('anime');
+};
+play.addEventListener('click', () => {
+    // if(isPlaying){
+    //     pauseMusic();
+    // }else {
+    //     playMusic();
+    // }
+    isPlaying ? pauseMusic() : playMusic() ;
+});
+// changing music data
+const loadSong = (songs) => {
+title.textContent = songs.title;
+artist.textContent = songs.artist;
+music.src = "music/" + songs.name + ".mp3";
+img.src = "images/" + songs.name + ".jpg";
+};
+songIndex = 0 ;
+// loadSong(songs[2]);
+
+const nextSong = () => {
+    songIndex = (songIndex + 1) % songs.length ;
+    loadSong(songs[songIndex]);
+    playMusic();
+}
+
+const prevSong = () => {
+    songIndex = (songIndex - 1 + songs.length) % songs.length ;
+    loadSong(songs[songIndex]);
+    playMusic();
+}
+
+
+next.addEventListener('click', nextSong);
+prev.addEventListener('click', prevSong);
+
+</script>
+</body>
+</html>
