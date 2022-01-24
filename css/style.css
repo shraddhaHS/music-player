@@ -78,7 +78,7 @@ width: 20rem;
 display: flex;
 justify-content: space-between;
 margin: auto;
-margin-top: 5rem;
+margin-top: 1rem;
 align-items: center;
 }
 .music_controls .main-button {
@@ -146,4 +146,3 @@ align-items: center;
     display: flex;
     justify-content: space-between;
 }
-
